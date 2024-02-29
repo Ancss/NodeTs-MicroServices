@@ -32,8 +32,8 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      - MYSQL_USER=jobber
-      - MYSQL_DATABASE=jobber_auth
+      - MYSQL_USER=ancss
+      - MYSQL_DATABASE=ancss_auth
       - MYSQL_ROOT_PASSWORD=api
       - MYSQL_PASSWORD=api
     ports:
@@ -46,9 +46,9 @@ services:
     image: postgres
     restart: always
     environment:
-      - POSTGRES_USER=jobber
+      - POSTGRES_USER=ancss
       - POSTGRES_PASSWORD=api
-      - POSTGRES_DB=jobber_reviews
+      - POSTGRES_DB=ancss_reviews
     ports:
       - '5432:5432'
     volumes:
@@ -59,8 +59,8 @@ services:
     image: rabbitmq:3.13-rc-management-alpine
     restart: always
     environment:
-      - RABBITMQ_DEFAULT_USER=jobber
-      - RABBITMQ_DEFAULT_PASS=jobberpass
+      - RABBITMQ_DEFAULT_USER=ancss
+      - RABBITMQ_DEFAULT_PASS=ancsspass
     ports:
       # AMQP protocol port
       - '5672:5672'
