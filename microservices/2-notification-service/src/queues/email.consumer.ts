@@ -1,5 +1,5 @@
 import { config } from '@notifications/config';
-import { IEmailLocals, winstonLogger } from '@uzochukwueddie/jobber-shared';
+import { IEmailLocals, winstonLogger } from '@ancss/nodets-shared';
 import { Channel, ConsumeMessage } from 'amqplib';
 import { Logger } from 'winston';
 import { createConnection } from '@notifications/queues/connection';
@@ -12,13 +12,13 @@ async function consumeAuthEmailMessages(channel: Channel): Promise<void> {
     if (!channel) {
       channel = await createConnection() as Channel;
     }
-    const exchangeName = 'jobber-email-notification';
+    const exchangeName = 'nodets-email-notification';
     const routingKey = 'auth-email';
     const queueName = 'auth-email-queue';
     await channel.assertExchange(exchangeName, 'direct');
-    const jobberQueue = await channel.assertQueue(queueName, { durable: true, autoDelete: false });
-    await channel.bindQueue(jobberQueue.queue, exchangeName, routingKey);
-    channel.consume(jobberQueue.queue, async (msg: ConsumeMessage | null) => {
+    const nodetsQueue = await channel.assertQueue(queueName, { durable: true, autoDelete: false });
+    await channel.bindQueue(nodetsQueue.queue, exchangeName, routingKey);
+    channel.consume(nodetsQueue.queue, async (msg: ConsumeMessage | null) => {
       const { receiverEmail, username, verifyLink, resetLink, template } = JSON.parse(msg!.content.toString());
       const locals: IEmailLocals = {
         appLink: `${config.CLIENT_URL}`,
@@ -40,13 +40,13 @@ async function consumeOrderEmailMessages(channel: Channel): Promise<void> {
     if (!channel) {
       channel = await createConnection() as Channel;
     }
-    const exchangeName = 'jobber-order-notification';
+    const exchangeName = 'nodets-order-notification';
     const routingKey = 'order-email';
     const queueName = 'order-email-queue';
     await channel.assertExchange(exchangeName, 'direct');
-    const jobberQueue = await channel.assertQueue(queueName, { durable: true, autoDelete: false });
-    await channel.bindQueue(jobberQueue.queue, exchangeName, routingKey);
-    channel.consume(jobberQueue.queue, async (msg: ConsumeMessage | null) => {
+    const nodetsQueue = await channel.assertQueue(queueName, { durable: true, autoDelete: false });
+    await channel.bindQueue(nodetsQueue.queue, exchangeName, routingKey);
+    channel.consume(nodetsQueue.queue, async (msg: ConsumeMessage | null) => {
       const {
         receiverEmail,
         username,

@@ -23,8 +23,8 @@
 * You can update the version of `NodeJS` used inside the `Dockerfile` and `Dockerfile.dev`.
 * Make sure you already have your own shared library published.
 * Copy the `.npmrc` file from your shared library folder and replace `${NPM_TOKEN}` with the actual `personal access token` you created.
-* Once you have your `.npmrc` and before you run `npm install` command, replace all occurrences of `@uzochukwueddie/jobber-shared` with your own shared library.
-* After replacing all occurrences of `@uzochukwueddie/jobber-shared`, you can then run `npm install` command.
+* Once you have your `.npmrc` and before you run `npm install` command, replace all occurrences of `@ancss/nodets-shared` with your own shared library.
+* After replacing all occurrences of `@ancss/nodets-shared`, you can then run `npm install` command.
 * Copy contents of `.env.dev` to `.env` file
   * Get a sender email and password from `https://ethereal.email`
   * Add username value from `ethereal` to `SENDER_EMAIL`
@@ -37,6 +37,6 @@
 * Create an account on `hub.docker.com` or login if you already have one.
 * Make sure to login on your terminal as well.
 * Steps to build and push your image to docker hub
-  * `docker build -t <your-dockerhub-username>/jobber-notification .`
-  * `docker tag <your-dockerhub-username>/jobber-notification <your-dockerhub-username>/jobber-notification:stable`
-  * `docker push <your-dockerhub-username>/jobber-notification:stable`
+  * `docker build -t <your-dockerhub-username>/nodets-notification .`
+  * `docker tag <your-dockerhub-username>/nodets-notification <your-dockerhub-username>/nodets-notification:stable`
+  * `docker push <your-dockerhub-username>/nodets-notification:stable`
